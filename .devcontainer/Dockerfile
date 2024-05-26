@@ -59,8 +59,34 @@ RUN apt-get remove dotnet* && \
     apt-get remove aspnetcore* && \
     apt-get remove netstandard&
 
-RUN apt-get update && \
-    apt-get install dotnet-sdk-6.0 -y
+# RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+#     dpkg -i packages-microsoft-prod.deb && \
+#     rm packages-microsoft-prod.deb && \
+#     touch /etc/apt/preferences.d/dotnet.pref && \
+#     echo "Package: *" >> /etc/apt/preferences && \
+#     echo "Pin: origin \"packages.microsoft.com\"" >> /etc/apt/preferences && \
+#     echo Pin-Priority: 1001 >> /etc/apt/preferences && \
+#     apt update && apt -y install dotnet-sdk-6.0
+
+# RUN apt-get dist-upgrade && \
+#     apt-get update && \
+#     apt-get install dotnet-sdk-6.0 -y
+
+# RUN dpkg --purge packages-microsoft-prod && dpkg -i packages-microsoft-prod.deb && \
+#     apt-get update && \
+#     apt-get install -y gpg && \
+#     wget -O - https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o microsoft.asc.gpg && \
+#     mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ && \
+#     wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list && \
+#     mv prod.list /etc/apt/sources.list.d/microsoft-prod.list && \
+#     apt-get update && \
+#     apt-get install -y dotnet-sdk-6.0
+
+RUN apt update && \
+    apt-get install software-properties-common -y && \
+    add-apt-repository ppa:dotnet/backports && \
+    apt-get update && \
+    apt-get install -y dotnet-sdk-6.0
 
 # Install Pulumi
 RUN curl -fsSL https://get.pulumi.com | sh
