@@ -15,12 +15,17 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
-	xyz "github.com/pulumi/pulumi-xyz/provider"
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
+	_ "embed"
+
+	hivelocity "github.com/embp/pulumi-hivelocity/provider"
+	"github.com/embp/pulumi-hivelocity/provider/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
+
+//go:embed schema.json
+var pulumiSchema []byte
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.Main("xyz", version.Version, xyz.Provider())
+	tfbridge.Main("hivelocity", version.Version, hivelocity.Provider(), pulumiSchema)
 }

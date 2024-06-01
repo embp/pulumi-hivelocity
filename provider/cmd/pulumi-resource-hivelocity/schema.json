@@ -1,0 +1,2190 @@
+{
+    "name": "hivelocity",
+    "description": "A Pulumi package for creating and managing hivelocity cloud resources.",
+    "keywords": [
+        "embp",
+        "hivelocity",
+        "category/cloud"
+    ],
+    "homepage": "https://www.pulumi.com",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`hivelocity` Terraform Provider](https://github.com/hivelocity/terraform-provider-hivelocity).",
+    "repository": "https://github.com/embp/pulumi-hivelocity",
+    "publisher": "embp",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "compatibility": "tfbridge20"
+        },
+        "go": {
+            "importBasePath": "github.com/embp/pulumi-hivelocity/sdk/go/hivelocity",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true
+        },
+        "nodejs": {
+            "packageDescription": "A Pulumi package for creating and managing hivelocity cloud resources.. Based on terraform-provider-hivelocity: version vv0.7.9",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hivelocity/terraform-provider-hivelocity)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-hivelocity` repo](https://github.com/embp/pulumi-hivelocity/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-hivelocity` repo](https://github.com/hivelocity/terraform-provider-hivelocity/issues).",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
+        },
+        "python": {
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hivelocity/terraform-provider-hivelocity)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-hivelocity` repo](https://github.com/embp/pulumi-hivelocity/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-hivelocity` repo](https://github.com/hivelocity/terraform-provider-hivelocity/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
+        }
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string",
+                "description": "Your API Key from the https://my.hivelocity.net portal.\n",
+                "secret": true
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "The API instance to communicate with defaults to https://core.hivelocity.net/api/v2\n"
+            }
+        },
+        "defaults": [
+            "apiKey",
+            "apiUrl"
+        ]
+    },
+    "types": {
+        "hivelocity:index/OrderGroupBareMetalDevice:OrderGroupBareMetalDevice": {
+            "properties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "When set, prefer only bonded devices\n",
+                    "willReplaceOnChanges": true
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "description": "Device ID\n"
+                },
+                "forceDeviceId": {
+                    "type": "integer",
+                    "description": "Force deployment of this Device ID (internal use only)\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "Hostname for this device\n"
+                },
+                "ignitionId": {
+                    "type": "integer",
+                    "description": "IgnitionConfig ID\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "Last time this device was updated\n"
+                },
+                "locationName": {
+                    "type": "string",
+                    "description": "Deploy device in this location\n"
+                },
+                "orderId": {
+                    "type": "integer",
+                    "description": "Order ID\n"
+                },
+                "osName": {
+                    "type": "string",
+                    "description": "Operating system to install on device\n"
+                },
+                "period": {
+                    "type": "string",
+                    "description": "Billing period for device\n"
+                },
+                "powerStatus": {
+                    "type": "string",
+                    "description": "Power status\n"
+                },
+                "primaryIp": {
+                    "type": "string",
+                    "description": "Primary IP of device\n"
+                },
+                "productId": {
+                    "type": "integer",
+                    "description": "Product ID to pick from the stock\n"
+                },
+                "productName": {
+                    "type": "string",
+                    "description": "Product Name\n"
+                },
+                "publicSshKeyId": {
+                    "type": "integer",
+                    "description": "ID of a SSH Key to apply for device\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "Post-install script for device\n"
+                },
+                "serviceId": {
+                    "type": "integer",
+                    "description": "Service ID\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags to apply for device\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID\n",
+                    "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname",
+                "locationName",
+                "osName",
+                "productId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "deviceId",
+                        "hostname",
+                        "lastUpdated",
+                        "locationName",
+                        "orderId",
+                        "osName",
+                        "period",
+                        "powerStatus",
+                        "primaryIp",
+                        "productId",
+                        "productName",
+                        "serviceId"
+                    ]
+                }
+            }
+        },
+        "hivelocity:index/getBareMetalDeviceFilter:getBareMetalDeviceFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
+        "hivelocity:index/getDeviceFilter:getDeviceFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
+        "hivelocity:index/getDevicePortFilter:getDevicePortFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
+        "hivelocity:index/getHivelocityDevicePortFilter:getHivelocityDevicePortFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
+        "hivelocity:index/getProductFilter:getProductFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
+        "hivelocity:index/getSshKeyFilter:getSshKeyFilter": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
+        "hivelocity:index/orderGroupBareMetalDevice:orderGroupBareMetalDevice": {
+            "properties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "When set, prefer only bonded devices\n",
+                    "willReplaceOnChanges": true
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "description": "Device ID\n"
+                },
+                "forceDeviceId": {
+                    "type": "integer",
+                    "description": "Force deployment of this Device ID (internal use only)\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "Hostname for this device\n"
+                },
+                "ignitionId": {
+                    "type": "integer",
+                    "description": "IgnitionConfig ID\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "Last time this device was updated\n"
+                },
+                "locationName": {
+                    "type": "string",
+                    "description": "Deploy device in this location\n"
+                },
+                "orderId": {
+                    "type": "integer",
+                    "description": "Order ID\n"
+                },
+                "osName": {
+                    "type": "string",
+                    "description": "Operating system to install on device\n"
+                },
+                "period": {
+                    "type": "string",
+                    "description": "Billing period for device\n"
+                },
+                "powerStatus": {
+                    "type": "string",
+                    "description": "Power status\n"
+                },
+                "primaryIp": {
+                    "type": "string",
+                    "description": "Primary IP of device\n"
+                },
+                "productId": {
+                    "type": "integer",
+                    "description": "Product ID to pick from the stock\n"
+                },
+                "productName": {
+                    "type": "string",
+                    "description": "Product Name\n"
+                },
+                "publicSshKeyId": {
+                    "type": "integer",
+                    "description": "ID of a SSH Key to apply for device\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "Post-install script for device\n"
+                },
+                "serviceId": {
+                    "type": "integer",
+                    "description": "Service ID\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags to apply for device\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID\n",
+                    "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname",
+                "locationName",
+                "osName",
+                "productId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "deviceId",
+                        "hostname",
+                        "lastUpdated",
+                        "locationName",
+                        "orderId",
+                        "osName",
+                        "period",
+                        "powerStatus",
+                        "primaryIp",
+                        "productId",
+                        "productName",
+                        "serviceId"
+                    ]
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the hivelocity package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apiKey": {
+                "type": "string",
+                "description": "Your API Key from the https://my.hivelocity.net portal.\n",
+                "secret": true
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "The API instance to communicate with defaults to https://core.hivelocity.net/api/v2\n"
+            }
+        },
+        "required": [
+            "apiKey",
+            "apiUrl"
+        ],
+        "inputProperties": {
+            "apiKey": {
+                "type": "string",
+                "description": "Your API Key from the https://my.hivelocity.net portal.\n",
+                "secret": true
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "The API instance to communicate with defaults to https://core.hivelocity.net/api/v2\n"
+            }
+        },
+        "requiredInputs": [
+            "apiKey",
+            "apiUrl"
+        ]
+    },
+    "resources": {
+        "hivelocity:index/bareMetalDevice:BareMetalDevice": {
+            "properties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "When set, prefer only bonded devices\n"
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "description": "Device ID\n"
+                },
+                "forceDeviceId": {
+                    "type": "integer",
+                    "description": "Force deployment of this Device ID (internal use only)\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "Hostname for this device\n"
+                },
+                "ignitionId": {
+                    "type": "integer",
+                    "description": "IgnitionConfig ID\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "Last time this device was updated\n"
+                },
+                "locationName": {
+                    "type": "string",
+                    "description": "Deploy device in this location\n"
+                },
+                "orderId": {
+                    "type": "integer",
+                    "description": "Order ID\n"
+                },
+                "osName": {
+                    "type": "string",
+                    "description": "Operating system to install on device\n"
+                },
+                "period": {
+                    "type": "string",
+                    "description": "Billing period for device\n"
+                },
+                "powerStatus": {
+                    "type": "string",
+                    "description": "Power status\n"
+                },
+                "primaryIp": {
+                    "type": "string",
+                    "description": "Primary IP of device\n"
+                },
+                "productId": {
+                    "type": "integer",
+                    "description": "Product ID to pick from the stock\n"
+                },
+                "productName": {
+                    "type": "string",
+                    "description": "Product Name\n"
+                },
+                "publicSshKeyId": {
+                    "type": "integer",
+                    "description": "ID of a SSH Key to apply for device\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "Post-install script for device\n"
+                },
+                "serviceId": {
+                    "type": "integer",
+                    "description": "Service ID\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags to apply for device\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID\n",
+                    "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                }
+            },
+            "required": [
+                "deviceId",
+                "hostname",
+                "lastUpdated",
+                "locationName",
+                "orderId",
+                "osName",
+                "period",
+                "powerStatus",
+                "primaryIp",
+                "productId",
+                "productName",
+                "serviceId"
+            ],
+            "inputProperties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "When set, prefer only bonded devices\n",
+                    "willReplaceOnChanges": true
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "description": "Device ID\n"
+                },
+                "forceDeviceId": {
+                    "type": "integer",
+                    "description": "Force deployment of this Device ID (internal use only)\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "Hostname for this device\n"
+                },
+                "ignitionId": {
+                    "type": "integer",
+                    "description": "IgnitionConfig ID\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "Last time this device was updated\n"
+                },
+                "locationName": {
+                    "type": "string",
+                    "description": "Deploy device in this location\n",
+                    "willReplaceOnChanges": true
+                },
+                "orderId": {
+                    "type": "integer",
+                    "description": "Order ID\n"
+                },
+                "osName": {
+                    "type": "string",
+                    "description": "Operating system to install on device\n"
+                },
+                "period": {
+                    "type": "string",
+                    "description": "Billing period for device\n"
+                },
+                "powerStatus": {
+                    "type": "string",
+                    "description": "Power status\n"
+                },
+                "primaryIp": {
+                    "type": "string",
+                    "description": "Primary IP of device\n"
+                },
+                "productId": {
+                    "type": "integer",
+                    "description": "Product ID to pick from the stock\n",
+                    "willReplaceOnChanges": true
+                },
+                "productName": {
+                    "type": "string",
+                    "description": "Product Name\n"
+                },
+                "publicSshKeyId": {
+                    "type": "integer",
+                    "description": "ID of a SSH Key to apply for device\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "Post-install script for device\n"
+                },
+                "serviceId": {
+                    "type": "integer",
+                    "description": "Service ID\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags to apply for device\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID\n",
+                    "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                }
+            },
+            "requiredInputs": [
+                "hostname",
+                "locationName",
+                "osName",
+                "productId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BareMetalDevice resources.\n",
+                "properties": {
+                    "bonded": {
+                        "type": "boolean",
+                        "description": "When set, prefer only bonded devices\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deviceId": {
+                        "type": "integer",
+                        "description": "Device ID\n"
+                    },
+                    "forceDeviceId": {
+                        "type": "integer",
+                        "description": "Force deployment of this Device ID (internal use only)\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "Hostname for this device\n"
+                    },
+                    "ignitionId": {
+                        "type": "integer",
+                        "description": "IgnitionConfig ID\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "description": "Last time this device was updated\n"
+                    },
+                    "locationName": {
+                        "type": "string",
+                        "description": "Deploy device in this location\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "orderId": {
+                        "type": "integer",
+                        "description": "Order ID\n"
+                    },
+                    "osName": {
+                        "type": "string",
+                        "description": "Operating system to install on device\n"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Billing period for device\n"
+                    },
+                    "powerStatus": {
+                        "type": "string",
+                        "description": "Power status\n"
+                    },
+                    "primaryIp": {
+                        "type": "string",
+                        "description": "Primary IP of device\n"
+                    },
+                    "productId": {
+                        "type": "integer",
+                        "description": "Product ID to pick from the stock\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "productName": {
+                        "type": "string",
+                        "description": "Product Name\n"
+                    },
+                    "publicSshKeyId": {
+                        "type": "integer",
+                        "description": "ID of a SSH Key to apply for device\n"
+                    },
+                    "script": {
+                        "type": "string",
+                        "description": "Post-install script for device\n"
+                    },
+                    "serviceId": {
+                        "type": "integer",
+                        "description": "Service ID\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tags to apply for device\n"
+                    },
+                    "vlanId": {
+                        "type": "integer",
+                        "description": "VLAN ID\n",
+                        "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "hivelocity:index/bareMetalDevice:bareMetalDevice"
+                }
+            ]
+        },
+        "hivelocity:index/bareMetalDevice:bareMetalDevice": {
+            "properties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "When set, prefer only bonded devices\n"
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "description": "Device ID\n"
+                },
+                "forceDeviceId": {
+                    "type": "integer",
+                    "description": "Force deployment of this Device ID (internal use only)\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "Hostname for this device\n"
+                },
+                "ignitionId": {
+                    "type": "integer",
+                    "description": "IgnitionConfig ID\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "Last time this device was updated\n"
+                },
+                "locationName": {
+                    "type": "string",
+                    "description": "Deploy device in this location\n"
+                },
+                "orderId": {
+                    "type": "integer",
+                    "description": "Order ID\n"
+                },
+                "osName": {
+                    "type": "string",
+                    "description": "Operating system to install on device\n"
+                },
+                "period": {
+                    "type": "string",
+                    "description": "Billing period for device\n"
+                },
+                "powerStatus": {
+                    "type": "string",
+                    "description": "Power status\n"
+                },
+                "primaryIp": {
+                    "type": "string",
+                    "description": "Primary IP of device\n"
+                },
+                "productId": {
+                    "type": "integer",
+                    "description": "Product ID to pick from the stock\n"
+                },
+                "productName": {
+                    "type": "string",
+                    "description": "Product Name\n"
+                },
+                "publicSshKeyId": {
+                    "type": "integer",
+                    "description": "ID of a SSH Key to apply for device\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "Post-install script for device\n"
+                },
+                "serviceId": {
+                    "type": "integer",
+                    "description": "Service ID\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags to apply for device\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID\n",
+                    "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                }
+            },
+            "required": [
+                "deviceId",
+                "hostname",
+                "lastUpdated",
+                "locationName",
+                "orderId",
+                "osName",
+                "period",
+                "powerStatus",
+                "primaryIp",
+                "productId",
+                "productName",
+                "serviceId"
+            ],
+            "inputProperties": {
+                "bonded": {
+                    "type": "boolean",
+                    "description": "When set, prefer only bonded devices\n",
+                    "willReplaceOnChanges": true
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "description": "Device ID\n"
+                },
+                "forceDeviceId": {
+                    "type": "integer",
+                    "description": "Force deployment of this Device ID (internal use only)\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "Hostname for this device\n"
+                },
+                "ignitionId": {
+                    "type": "integer",
+                    "description": "IgnitionConfig ID\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "Last time this device was updated\n"
+                },
+                "locationName": {
+                    "type": "string",
+                    "description": "Deploy device in this location\n",
+                    "willReplaceOnChanges": true
+                },
+                "orderId": {
+                    "type": "integer",
+                    "description": "Order ID\n"
+                },
+                "osName": {
+                    "type": "string",
+                    "description": "Operating system to install on device\n"
+                },
+                "period": {
+                    "type": "string",
+                    "description": "Billing period for device\n"
+                },
+                "powerStatus": {
+                    "type": "string",
+                    "description": "Power status\n"
+                },
+                "primaryIp": {
+                    "type": "string",
+                    "description": "Primary IP of device\n"
+                },
+                "productId": {
+                    "type": "integer",
+                    "description": "Product ID to pick from the stock\n",
+                    "willReplaceOnChanges": true
+                },
+                "productName": {
+                    "type": "string",
+                    "description": "Product Name\n"
+                },
+                "publicSshKeyId": {
+                    "type": "integer",
+                    "description": "ID of a SSH Key to apply for device\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "Post-install script for device\n"
+                },
+                "serviceId": {
+                    "type": "integer",
+                    "description": "Service ID\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags to apply for device\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID\n",
+                    "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                }
+            },
+            "requiredInputs": [
+                "hostname",
+                "locationName",
+                "osName",
+                "productId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering bareMetalDevice resources.\n",
+                "properties": {
+                    "bonded": {
+                        "type": "boolean",
+                        "description": "When set, prefer only bonded devices\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "deviceId": {
+                        "type": "integer",
+                        "description": "Device ID\n"
+                    },
+                    "forceDeviceId": {
+                        "type": "integer",
+                        "description": "Force deployment of this Device ID (internal use only)\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "Hostname for this device\n"
+                    },
+                    "ignitionId": {
+                        "type": "integer",
+                        "description": "IgnitionConfig ID\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "description": "Last time this device was updated\n"
+                    },
+                    "locationName": {
+                        "type": "string",
+                        "description": "Deploy device in this location\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "orderId": {
+                        "type": "integer",
+                        "description": "Order ID\n"
+                    },
+                    "osName": {
+                        "type": "string",
+                        "description": "Operating system to install on device\n"
+                    },
+                    "period": {
+                        "type": "string",
+                        "description": "Billing period for device\n"
+                    },
+                    "powerStatus": {
+                        "type": "string",
+                        "description": "Power status\n"
+                    },
+                    "primaryIp": {
+                        "type": "string",
+                        "description": "Primary IP of device\n"
+                    },
+                    "productId": {
+                        "type": "integer",
+                        "description": "Product ID to pick from the stock\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "productName": {
+                        "type": "string",
+                        "description": "Product Name\n"
+                    },
+                    "publicSshKeyId": {
+                        "type": "integer",
+                        "description": "ID of a SSH Key to apply for device\n"
+                    },
+                    "script": {
+                        "type": "string",
+                        "description": "Post-install script for device\n"
+                    },
+                    "serviceId": {
+                        "type": "integer",
+                        "description": "Service ID\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tags to apply for device\n"
+                    },
+                    "vlanId": {
+                        "type": "integer",
+                        "description": "VLAN ID\n",
+                        "deprecationMessage": "This field is deprecated. Please use a hivelocity.Vlan resource instead."
+                    }
+                },
+                "type": "object"
+            },
+            "deprecationMessage": "hivelocity.index/baremetaldevice.bareMetalDevice has been deprecated in favor of hivelocity.index/baremetaldevice.BareMetalDevice"
+        },
+        "hivelocity:index/ignition:Ignition": {
+            "properties": {
+                "contents": {
+                    "type": "string",
+                    "description": "String of the JSON contents of the ignition file\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of ignition file resource\n"
+                }
+            },
+            "required": [
+                "contents",
+                "name"
+            ],
+            "inputProperties": {
+                "contents": {
+                    "type": "string",
+                    "description": "String of the JSON contents of the ignition file\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of ignition file resource\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "contents"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Ignition resources.\n",
+                "properties": {
+                    "contents": {
+                        "type": "string",
+                        "description": "String of the JSON contents of the ignition file\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of ignition file resource\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "hivelocity:index/ignition:ignition"
+                }
+            ]
+        },
+        "hivelocity:index/ignition:ignition": {
+            "properties": {
+                "contents": {
+                    "type": "string",
+                    "description": "String of the JSON contents of the ignition file\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of ignition file resource\n"
+                }
+            },
+            "required": [
+                "contents",
+                "name"
+            ],
+            "inputProperties": {
+                "contents": {
+                    "type": "string",
+                    "description": "String of the JSON contents of the ignition file\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of ignition file resource\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "contents"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ignition resources.\n",
+                "properties": {
+                    "contents": {
+                        "type": "string",
+                        "description": "String of the JSON contents of the ignition file\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of ignition file resource\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "deprecationMessage": "hivelocity.index/ignition.ignition has been deprecated in favor of hivelocity.index/ignition.Ignition"
+        },
+        "hivelocity:index/orderGroup:OrderGroup": {
+            "properties": {
+                "bareMetalDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/hivelocity:index/OrderGroupBareMetalDevice:OrderGroupBareMetalDevice"
+                    },
+                    "description": "A list of Bare Metal Devices to deploy\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of this Order Group\n"
+                },
+                "sameRack": {
+                    "type": "boolean",
+                    "description": "Devices will be placed in the same rack\n"
+                }
+            },
+            "required": [
+                "bareMetalDevices",
+                "name",
+                "sameRack"
+            ],
+            "inputProperties": {
+                "bareMetalDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/hivelocity:index/OrderGroupBareMetalDevice:OrderGroupBareMetalDevice"
+                    },
+                    "description": "A list of Bare Metal Devices to deploy\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of this Order Group\n"
+                },
+                "sameRack": {
+                    "type": "boolean",
+                    "description": "Devices will be placed in the same rack\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "bareMetalDevices",
+                "sameRack"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OrderGroup resources.\n",
+                "properties": {
+                    "bareMetalDevices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/OrderGroupBareMetalDevice:OrderGroupBareMetalDevice"
+                        },
+                        "description": "A list of Bare Metal Devices to deploy\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of this Order Group\n"
+                    },
+                    "sameRack": {
+                        "type": "boolean",
+                        "description": "Devices will be placed in the same rack\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "hivelocity:index/orderGroup:orderGroup"
+                }
+            ]
+        },
+        "hivelocity:index/orderGroup:orderGroup": {
+            "properties": {
+                "bareMetalDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/hivelocity:index/orderGroupBareMetalDevice:orderGroupBareMetalDevice"
+                    },
+                    "description": "A list of Bare Metal Devices to deploy\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of this Order Group\n"
+                },
+                "sameRack": {
+                    "type": "boolean",
+                    "description": "Devices will be placed in the same rack\n"
+                }
+            },
+            "required": [
+                "bareMetalDevices",
+                "name",
+                "sameRack"
+            ],
+            "inputProperties": {
+                "bareMetalDevices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/hivelocity:index/orderGroupBareMetalDevice:orderGroupBareMetalDevice"
+                    },
+                    "description": "A list of Bare Metal Devices to deploy\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of this Order Group\n"
+                },
+                "sameRack": {
+                    "type": "boolean",
+                    "description": "Devices will be placed in the same rack\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "bareMetalDevices",
+                "sameRack"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering orderGroup resources.\n",
+                "properties": {
+                    "bareMetalDevices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/orderGroupBareMetalDevice:orderGroupBareMetalDevice"
+                        },
+                        "description": "A list of Bare Metal Devices to deploy\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of this Order Group\n"
+                    },
+                    "sameRack": {
+                        "type": "boolean",
+                        "description": "Devices will be placed in the same rack\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "deprecationMessage": "hivelocity.index/ordergroup.orderGroup has been deprecated in favor of hivelocity.index/ordergroup.OrderGroup"
+        },
+        "hivelocity:index/sshKey:SshKey": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "publicKey": {
+                    "type": "string"
+                },
+                "sshKeyId": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "publicKey",
+                "sshKeyId"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string"
+                },
+                "publicKey": {
+                    "type": "string"
+                },
+                "sshKeyId": {
+                    "type": "integer"
+                }
+            },
+            "requiredInputs": [
+                "publicKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SshKey resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "publicKey": {
+                        "type": "string"
+                    },
+                    "sshKeyId": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "hivelocity:index/sshKey:sshKey"
+                }
+            ]
+        },
+        "hivelocity:index/sshKey:sshKey": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "publicKey": {
+                    "type": "string"
+                },
+                "sshKeyId": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "publicKey",
+                "sshKeyId"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string"
+                },
+                "publicKey": {
+                    "type": "string"
+                },
+                "sshKeyId": {
+                    "type": "integer"
+                }
+            },
+            "requiredInputs": [
+                "publicKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering sshKey resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "publicKey": {
+                        "type": "string"
+                    },
+                    "sshKeyId": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "deprecationMessage": "hivelocity.index/sshkey.sshKey has been deprecated in favor of hivelocity.index/sshkey.SshKey"
+        },
+        "hivelocity:index/vlan:Vlan": {
+            "properties": {
+                "facilityCode": {
+                    "type": "string",
+                    "description": "Location where to create this VLAN\n"
+                },
+                "portIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of ports to include in this VLAN\n"
+                },
+                "tagId": {
+                    "type": "integer",
+                    "description": "Tag ID of VLAN\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of VLAN to be created, can be either `private` or `public`\n"
+                }
+            },
+            "required": [
+                "facilityCode",
+                "portIds",
+                "tagId",
+                "type"
+            ],
+            "inputProperties": {
+                "facilityCode": {
+                    "type": "string",
+                    "description": "Location where to create this VLAN\n",
+                    "willReplaceOnChanges": true
+                },
+                "portIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of ports to include in this VLAN\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of VLAN to be created, can be either `private` or `public`\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "facilityCode",
+                "portIds",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Vlan resources.\n",
+                "properties": {
+                    "facilityCode": {
+                        "type": "string",
+                        "description": "Location where to create this VLAN\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "portIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "IDs of ports to include in this VLAN\n"
+                    },
+                    "tagId": {
+                        "type": "integer",
+                        "description": "Tag ID of VLAN\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of VLAN to be created, can be either `private` or `public`\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "hivelocity:index/vlan:vlan"
+                }
+            ]
+        },
+        "hivelocity:index/vlan:vlan": {
+            "properties": {
+                "facilityCode": {
+                    "type": "string",
+                    "description": "Location where to create this VLAN\n"
+                },
+                "portIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of ports to include in this VLAN\n"
+                },
+                "tagId": {
+                    "type": "integer",
+                    "description": "Tag ID of VLAN\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of VLAN to be created, can be either `private` or `public`\n"
+                }
+            },
+            "required": [
+                "facilityCode",
+                "portIds",
+                "tagId",
+                "type"
+            ],
+            "inputProperties": {
+                "facilityCode": {
+                    "type": "string",
+                    "description": "Location where to create this VLAN\n",
+                    "willReplaceOnChanges": true
+                },
+                "portIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "IDs of ports to include in this VLAN\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of VLAN to be created, can be either `private` or `public`\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "facilityCode",
+                "portIds",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering vlan resources.\n",
+                "properties": {
+                    "facilityCode": {
+                        "type": "string",
+                        "description": "Location where to create this VLAN\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "portIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "IDs of ports to include in this VLAN\n"
+                    },
+                    "tagId": {
+                        "type": "integer",
+                        "description": "Tag ID of VLAN\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of VLAN to be created, can be either `private` or `public`\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "deprecationMessage": "hivelocity.index/vlan.vlan has been deprecated in favor of hivelocity.index/vlan.Vlan"
+        }
+    },
+    "functions": {
+        "hivelocity:index/getBareMetalDevice:getBareMetalDevice": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getBareMetalDevice.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getBareMetalDeviceFilter:getBareMetalDeviceFilter"
+                        },
+                        "willReplaceOnChanges": true
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "lastUpdated": {
+                        "type": "string"
+                    },
+                    "locationName": {
+                        "type": "string"
+                    },
+                    "orderId": {
+                        "type": "integer"
+                    },
+                    "osName": {
+                        "type": "string"
+                    },
+                    "period": {
+                        "type": "string"
+                    },
+                    "powerStatus": {
+                        "type": "string"
+                    },
+                    "primaryIp": {
+                        "type": "string"
+                    },
+                    "productId": {
+                        "type": "integer"
+                    },
+                    "productName": {
+                        "type": "string"
+                    },
+                    "publicSshKeyId": {
+                        "type": "integer"
+                    },
+                    "script": {
+                        "type": "string"
+                    },
+                    "serviceId": {
+                        "type": "integer"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "vlanId": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBareMetalDevice.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getBareMetalDeviceFilter:getBareMetalDeviceFilter"
+                        }
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string"
+                    },
+                    "locationName": {
+                        "type": "string"
+                    },
+                    "orderId": {
+                        "type": "integer"
+                    },
+                    "osName": {
+                        "type": "string"
+                    },
+                    "period": {
+                        "type": "string"
+                    },
+                    "powerStatus": {
+                        "type": "string"
+                    },
+                    "primaryIp": {
+                        "type": "string"
+                    },
+                    "productId": {
+                        "type": "integer"
+                    },
+                    "productName": {
+                        "type": "string"
+                    },
+                    "publicSshKeyId": {
+                        "type": "integer"
+                    },
+                    "script": {
+                        "type": "string"
+                    },
+                    "serviceId": {
+                        "type": "integer"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "vlanId": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId",
+                    "hostname",
+                    "lastUpdated",
+                    "locationName",
+                    "orderId",
+                    "osName",
+                    "period",
+                    "powerStatus",
+                    "primaryIp",
+                    "productId",
+                    "productName",
+                    "script",
+                    "serviceId",
+                    "id"
+                ]
+            }
+        },
+        "hivelocity:index/getDevice:getDevice": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDevice.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getDeviceFilter:getDeviceFilter"
+                        },
+                        "willReplaceOnChanges": true
+                    },
+                    "first": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDevice.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "deviceType": {
+                        "type": "string"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getDeviceFilter:getDeviceFilter"
+                        }
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ipAddresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "ipmiAddress": {
+                        "type": "string"
+                    },
+                    "ipmiEnabled": {
+                        "type": "boolean"
+                    },
+                    "location": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "powerStatus": {
+                        "type": "string"
+                    },
+                    "servicePlan": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId",
+                    "deviceType",
+                    "hostname",
+                    "ipAddresses",
+                    "ipmiAddress",
+                    "ipmiEnabled",
+                    "location",
+                    "metadata",
+                    "name",
+                    "powerStatus",
+                    "servicePlan",
+                    "status",
+                    "tags",
+                    "id"
+                ]
+            }
+        },
+        "hivelocity:index/getDeviceInitialCreds:getDeviceInitialCreds": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDeviceInitialCreds.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDeviceInitialCreds.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "lockerUrl": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "port": {
+                        "type": "integer"
+                    },
+                    "user": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId",
+                    "lockerUrl",
+                    "password",
+                    "port",
+                    "user",
+                    "id"
+                ]
+            }
+        },
+        "hivelocity:index/getDevicePort:getDevicePort": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDevicePort.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getDevicePortFilter:getDevicePortFilter"
+                        },
+                        "willReplaceOnChanges": true
+                    },
+                    "first": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDevicePort.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getDevicePortFilter:getDevicePortFilter"
+                        }
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "isBond": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "portId": {
+                        "type": "integer"
+                    },
+                    "private": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId",
+                    "isBond",
+                    "name",
+                    "portId",
+                    "private",
+                    "id"
+                ]
+            }
+        },
+        "hivelocity:index/getEffectiveIgnition:getEffectiveIgnition": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getEffectiveIgnition.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getEffectiveIgnition.\n",
+                "properties": {
+                    "contents": {
+                        "type": "string"
+                    },
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "contents",
+                    "deviceId",
+                    "id"
+                ]
+            }
+        },
+        "hivelocity:index/getHivelocityDevicePort:getHivelocityDevicePort": {
+            "deprecationMessage": "hivelocity.index/gethivelocitydeviceport.getHivelocityDevicePort has been deprecated in favor of hivelocity.index/getdeviceport.getDevicePort",
+            "inputs": {
+                "description": "A collection of arguments for invoking getHivelocityDevicePort.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getHivelocityDevicePortFilter:getHivelocityDevicePortFilter"
+                        },
+                        "willReplaceOnChanges": true
+                    },
+                    "first": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getHivelocityDevicePort.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "integer"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getHivelocityDevicePortFilter:getHivelocityDevicePortFilter"
+                        }
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "isBond": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "portId": {
+                        "type": "integer"
+                    },
+                    "private": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deviceId",
+                    "isBond",
+                    "name",
+                    "portId",
+                    "private",
+                    "id"
+                ]
+            }
+        },
+        "hivelocity:index/getProduct:getProduct": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getProduct.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getProductFilter:getProductFilter"
+                        },
+                        "willReplaceOnChanges": true
+                    },
+                    "first": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProduct.\n",
+                "properties": {
+                    "annuallyLocationPremium": {
+                        "type": "number"
+                    },
+                    "biennialLocationPremium": {
+                        "type": "number"
+                    },
+                    "core": {
+                        "type": "boolean"
+                    },
+                    "dataCenter": {
+                        "type": "string"
+                    },
+                    "edge": {
+                        "type": "boolean"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getProductFilter:getProductFilter"
+                        }
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "hourlyLocationPremium": {
+                        "type": "number"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "monthlyLocationPremium": {
+                        "type": "number"
+                    },
+                    "productAnnuallyPrice": {
+                        "type": "number"
+                    },
+                    "productBandwidth": {
+                        "type": "string"
+                    },
+                    "productBiennialPrice": {
+                        "type": "number"
+                    },
+                    "productCpu": {
+                        "type": "string"
+                    },
+                    "productCpuCores": {
+                        "type": "string"
+                    },
+                    "productDisabledBillingPeriods": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "productDisplayPrice": {
+                        "type": "number"
+                    },
+                    "productDrive": {
+                        "type": "string"
+                    },
+                    "productGpu": {
+                        "type": "string"
+                    },
+                    "productHourlyPrice": {
+                        "type": "number"
+                    },
+                    "productId": {
+                        "type": "integer"
+                    },
+                    "productMemory": {
+                        "type": "string"
+                    },
+                    "productMonthlyPrice": {
+                        "type": "number"
+                    },
+                    "productName": {
+                        "type": "string"
+                    },
+                    "productOnSale": {
+                        "type": "boolean"
+                    },
+                    "productOriginalPrice": {
+                        "type": "number"
+                    },
+                    "productQuarterlyPrice": {
+                        "type": "number"
+                    },
+                    "productSemiAnnuallyPrice": {
+                        "type": "number"
+                    },
+                    "productTriennialPrice": {
+                        "type": "number"
+                    },
+                    "quarterlyLocationPremium": {
+                        "type": "number"
+                    },
+                    "semiAnnuallyLocationPremium": {
+                        "type": "number"
+                    },
+                    "stock": {
+                        "type": "string"
+                    },
+                    "triennialLocationPremium": {
+                        "type": "number"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "annuallyLocationPremium",
+                    "biennialLocationPremium",
+                    "core",
+                    "dataCenter",
+                    "edge",
+                    "hourlyLocationPremium",
+                    "monthlyLocationPremium",
+                    "productAnnuallyPrice",
+                    "productBandwidth",
+                    "productBiennialPrice",
+                    "productCpu",
+                    "productCpuCores",
+                    "productDisabledBillingPeriods",
+                    "productDisplayPrice",
+                    "productDrive",
+                    "productGpu",
+                    "productHourlyPrice",
+                    "productId",
+                    "productMemory",
+                    "productMonthlyPrice",
+                    "productName",
+                    "productOnSale",
+                    "productOriginalPrice",
+                    "productQuarterlyPrice",
+                    "productSemiAnnuallyPrice",
+                    "productTriennialPrice",
+                    "quarterlyLocationPremium",
+                    "semiAnnuallyLocationPremium",
+                    "stock",
+                    "triennialLocationPremium",
+                    "id"
+                ]
+            }
+        },
+        "hivelocity:index/getSshKey:getSshKey": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getSshKey.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getSshKeyFilter:getSshKeyFilter"
+                        },
+                        "willReplaceOnChanges": true
+                    },
+                    "first": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSshKey.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hivelocity:index/getSshKeyFilter:getSshKeyFilter"
+                        }
+                    },
+                    "first": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "publicKey": {
+                        "type": "string"
+                    },
+                    "sshKeyId": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "publicKey",
+                    "sshKeyId",
+                    "id"
+                ]
+            }
+        }
+    }
+}

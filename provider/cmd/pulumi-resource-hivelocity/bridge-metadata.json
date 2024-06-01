@@ -1,0 +1,216 @@
+{
+    "auto-aliasing": {
+        "resources": {
+            "hivelocity_bare_metal_device": {
+                "current": "hivelocity:index/bareMetalDevice:BareMetalDevice",
+                "past": [
+                    {
+                        "name": "hivelocity:index/bareMetalDevice:bareMetalDevice",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "hivelocity_ignition": {
+                "current": "hivelocity:index/ignition:Ignition",
+                "past": [
+                    {
+                        "name": "hivelocity:index/ignition:ignition",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
+            },
+            "hivelocity_order_group": {
+                "current": "hivelocity:index/orderGroup:OrderGroup",
+                "past": [
+                    {
+                        "name": "hivelocity:index/orderGroup:orderGroup",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
+                "fields": {
+                    "bare_metal_device": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "hivelocity_ssh_key": {
+                "current": "hivelocity:index/sshKey:SshKey",
+                "past": [
+                    {
+                        "name": "hivelocity:index/sshKey:sshKey",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ]
+            },
+            "hivelocity_vlan": {
+                "current": "hivelocity:index/vlan:Vlan",
+                "past": [
+                    {
+                        "name": "hivelocity:index/vlan:vlan",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
+                "fields": {
+                    "port_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            }
+        },
+        "datasources": {
+            "hivelocity_bare_metal_device": {
+                "current": "hivelocity:index/getBareMetalDevice:getBareMetalDevice",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "hivelocity_device": {
+                "current": "hivelocity:index/getDevice:getDevice",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "ip_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "hivelocity_device_initial_creds": {
+                "current": "hivelocity:index/getDeviceInitialCreds:getDeviceInitialCreds"
+            },
+            "hivelocity_device_port": {
+                "current": "hivelocity:index/getDevicePort:getDevicePort",
+                "past": [
+                    {
+                        "name": "hivelocity:index/getHivelocityDevicePort:getHivelocityDevicePort",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "hivelocity_effective_ignition": {
+                "current": "hivelocity:index/getEffectiveIgnition:getEffectiveIgnition"
+            },
+            "hivelocity_product": {
+                "current": "hivelocity:index/getProduct:getProduct",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "product_disabled_billing_periods": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "hivelocity_ssh_key": {
+                "current": "hivelocity:index/getSshKey:getSshKey",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "auto-settings": {
+        "resources": {
+            "hivelocity_bare_metal_device": {
+                "aliases": [
+                    "hivelocity:index/bareMetalDevice:bareMetalDevice"
+                ]
+            },
+            "hivelocity_ignition": {
+                "aliases": [
+                    "hivelocity:index/ignition:ignition"
+                ]
+            },
+            "hivelocity_order_group": {
+                "aliases": [
+                    "hivelocity:index/orderGroup:orderGroup"
+                ]
+            },
+            "hivelocity_ssh_key": {
+                "aliases": [
+                    "hivelocity:index/sshKey:sshKey"
+                ]
+            },
+            "hivelocity_vlan": {
+                "aliases": [
+                    "hivelocity:index/vlan:vlan"
+                ]
+            }
+        },
+        "datasources": {
+            "hivelocity_device_port": {
+                "renames": [
+                    "hivelocity:index/getHivelocityDevicePort:getHivelocityDevicePort"
+                ]
+            }
+        }
+    }
+}

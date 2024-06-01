@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package hivelocity
 
 import (
 	"path"
@@ -25,25 +25,26 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 
 	// Replace this provider with the provider you are bridging.
-	xyz "github.com/iwahbe/terraform-provider-xyz/provider"
+	hivelocity "github.com/hivelocity/terraform-provider-hivelocity/hivelocity"
 
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
+	"github.com/embp/pulumi-hivelocity/provider/pkg/version"
 )
 
 // all of the token components used below.
 const (
 	// This variable controls the default name of the package in the package
 	// registries for nodejs and python:
-	mainPkg = "xyz"
+	mainPkg = "hivelocity"
 	// modules:
-	mainMod = "index" // the xyz module
+	mainMod = "index" // the hivelocity module
 )
 
-//go:embed cmd/pulumi-resource-xyz/bridge-metadata.json
+//go:embed cmd/pulumi-resource-hivelocity/bridge-metadata.json
 var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
+
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
@@ -78,17 +79,17 @@ func Provider() tfbridge.ProviderInfo {
 		//
 		//    - Replace `shimv2.NewProvider` with `pfbridge.ShimProvider`.
 		//
-		//    - In provider/cmd/pulumi-tfgen-xyz/main.go, replace the
+		//    - In provider/cmd/pulumi-tfgen-hivelocity/main.go, replace the
 		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen" import with
 		//      "github.com/pulumi/pulumi-terraform-bridge/pf/tfgen". Remove the `version.Version`
 		//      argument to `tfgen.Main`.
 		//
-		//    - In provider/cmd/pulumi-resource-xyz/main.go, replace the
+		//    - In provider/cmd/pulumi-resource-hivelocity/main.go, replace the
 		//      "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge" import with
 		//      "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge". Replace the arguments to the
 		//      `tfbridge.Main` so it looks like this:
 		//
-		//      	tfbridge.Main(context.Background(), "xyz", xyz.Provider(),
+		//      	tfbridge.Main(context.Background(), "hivelocity", hivelocity.Provider(),
 		//			tfbridge.ProviderMetadata{PulumiSchema: pulumiSchema})
 		//
 		//   Detailed instructions can be found at
@@ -96,7 +97,7 @@ func Provider() tfbridge.ProviderInfo {
 		//   After that, you can proceed as normal.
 		//
 		// This is where you give the bridge a handle to the upstream terraform provider. SDKv2
-		// convention is to have a function at "github.com/iwahbe/terraform-provider-xyz/provider".New
+		// convention is to have a function at "github.com/iwahbe/terraform-provider-hivelocity/provider".New
 		// which takes a version and produces a factory function. The provider you are bridging may
 		// not do that. You will need to find the function (generally called in upstream's main.go)
 		// that produces a:
@@ -106,16 +107,16 @@ func Provider() tfbridge.ProviderInfo {
 		// - "github.com/hashicorp/terraform-plugin-framework/provider".Provider (for plugin-framework)
 		//
 		//nolint:lll
-		P: shimv2.NewProvider(xyz.New(version.Version)()),
+		P: shimv2.NewProvider(hivelocity.Provider()),
 
-		Name:    "xyz",
+		Name:    "hivelocity",
 		Version: version.Version,
 		// DisplayName is a way to be able to change the casing of the provider name when being
 		// displayed on the Pulumi registry
 		DisplayName: "",
 		// Change this to your personal name (or a company name) that you would like to be shown in
 		// the Pulumi Registry if this package is published there.
-		Publisher: "abc",
+		Publisher: "embp",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
@@ -126,17 +127,35 @@ func Provider() tfbridge.ProviderInfo {
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
 		PluginDownloadURL: "",
-		Description:       "A Pulumi package for creating and managing xyz cloud resources.",
+		Description:       "A Pulumi package for creating and managing hivelocity cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"abc", "xyz", "category/cloud"},
+		Keywords:   []string{"embp", "hivelocity", "category/cloud"},
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/pulumi/pulumi-xyz",
+		Repository: "https://github.com/embp/pulumi-hivelocity",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
 		// match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:    "",
+		GitHubOrg:         "hivelocity",
+		TFProviderVersion: "v0.7.9",
+		//TFProviderModuleVersion: "v1",
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"hivelocity_bare_metal_device": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "BareMetalDevice")},
+			"hivelocity_ssh_key":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SshKey")},
+			"hivelocity_vlan":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vlan")},
+			"hivelocity_order_group":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "OrderGroup")},
+			"hivelocity_ignition":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Ignition")},
+		},
+		DataSources: map[string]*tfbridge.DataSourceInfo{
+			"hivelocity_bare_metal_device":    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBareMetalDevice")},
+			"hivelocity_device":               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDevice")},
+			"hivelocity_product":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getProduct")},
+			"hivelocity_device_initial_creds": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDeviceInitialCreds")},
+			"hivelocity_ssh_key":              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSshKey")},
+			"hivelocity_effective_ignition":   {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getEffectiveIgnition")},
+			"hivelocity_device_port":          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDevicePort")},
+		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
@@ -166,7 +185,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: path.Join(
-				"github.com/pulumi/pulumi-xyz/sdk/",
+				"github.com/embp/pulumi-hivelocity/sdk/",
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
@@ -186,7 +205,7 @@ func Provider() tfbridge.ProviderInfo {
 	//
 	// You shouldn't need to override anything, but if you do, use the [tfbridge.ProviderInfo.Resources]
 	// and [tfbridge.ProviderInfo.DataSources].
-	prov.MustComputeTokens(tokens.SingleModule("xyz_", mainMod,
+	prov.MustComputeTokens(tokens.SingleModule("hivelocity_", mainMod,
 		tokens.MakeStandard(mainPkg)))
 
 	prov.MustApplyAutoAliases()
