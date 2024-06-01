@@ -2,8 +2,13 @@
     "auto-aliasing": {
         "resources": {
             "hivelocity_bare_metal_device": {
-                "current": "hivelocity:index/bareMetalDevice:BareMetalDevice",
+                "current": "hivelocity:index/bareMetalDeviceDetail:BareMetalDeviceDetail",
                 "past": [
+                    {
+                        "name": "hivelocity:index/bareMetalDevice:BareMetalDevice",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    },
                     {
                         "name": "hivelocity:index/bareMetalDevice:bareMetalDevice",
                         "inCodegen": true,
@@ -17,8 +22,13 @@
                 }
             },
             "hivelocity_ignition": {
-                "current": "hivelocity:index/ignition:Ignition",
+                "current": "hivelocity:index/ignitionDetail:IgnitionDetail",
                 "past": [
+                    {
+                        "name": "hivelocity:index/ignition:Ignition",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    },
                     {
                         "name": "hivelocity:index/ignition:ignition",
                         "inCodegen": true,
@@ -27,8 +37,13 @@
                 ]
             },
             "hivelocity_order_group": {
-                "current": "hivelocity:index/orderGroup:OrderGroup",
+                "current": "hivelocity:index/orderGroupDetail:OrderGroupDetail",
                 "past": [
+                    {
+                        "name": "hivelocity:index/orderGroup:OrderGroup",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    },
                     {
                         "name": "hivelocity:index/orderGroup:orderGroup",
                         "inCodegen": true,
@@ -49,8 +64,13 @@
                 }
             },
             "hivelocity_ssh_key": {
-                "current": "hivelocity:index/sshKey:SshKey",
+                "current": "hivelocity:index/sshKeyDetail:SshKeyDetail",
                 "past": [
+                    {
+                        "name": "hivelocity:index/sshKey:SshKey",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    },
                     {
                         "name": "hivelocity:index/sshKey:sshKey",
                         "inCodegen": true,
@@ -59,8 +79,13 @@
                 ]
             },
             "hivelocity_vlan": {
-                "current": "hivelocity:index/vlan:Vlan",
+                "current": "hivelocity:index/vlanDetail:VlanDetail",
                 "past": [
+                    {
+                        "name": "hivelocity:index/vlan:Vlan",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    },
                     {
                         "name": "hivelocity:index/vlan:vlan",
                         "inCodegen": true,
@@ -181,26 +206,31 @@
         "resources": {
             "hivelocity_bare_metal_device": {
                 "aliases": [
+                    "hivelocity:index/bareMetalDevice:BareMetalDevice",
                     "hivelocity:index/bareMetalDevice:bareMetalDevice"
                 ]
             },
             "hivelocity_ignition": {
                 "aliases": [
+                    "hivelocity:index/ignition:Ignition",
                     "hivelocity:index/ignition:ignition"
                 ]
             },
             "hivelocity_order_group": {
                 "aliases": [
+                    "hivelocity:index/orderGroup:OrderGroup",
                     "hivelocity:index/orderGroup:orderGroup"
                 ]
             },
             "hivelocity_ssh_key": {
                 "aliases": [
+                    "hivelocity:index/sshKey:SshKey",
                     "hivelocity:index/sshKey:sshKey"
                 ]
             },
             "hivelocity_vlan": {
                 "aliases": [
+                    "hivelocity:index/vlan:Vlan",
                     "hivelocity:index/vlan:vlan"
                 ]
             }

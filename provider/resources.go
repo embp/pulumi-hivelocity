@@ -141,11 +141,11 @@ func Provider() tfbridge.ProviderInfo {
 		TFProviderVersion: "v0.7.9",
 		//TFProviderModuleVersion: "v1",
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"hivelocity_bare_metal_device": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "BareMetalDevice")},
-			"hivelocity_ssh_key":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SshKey")},
-			"hivelocity_vlan":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vlan")},
-			"hivelocity_order_group":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "OrderGroup")},
-			"hivelocity_ignition":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Ignition")},
+			"hivelocity_bare_metal_device": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "BareMetalDeviceDetail")},
+			"hivelocity_ssh_key":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SshKeyDetail")},
+			"hivelocity_vlan":              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VlanDetail")},
+			"hivelocity_order_group":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "OrderGroupDetail")},
+			"hivelocity_ignition":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IgnitionDetail")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"hivelocity_bare_metal_device":    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBareMetalDevice")},
